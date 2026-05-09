@@ -1,0 +1,288 @@
+  @import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=DM+Sans:wght@300;400;500;600&display=swap');
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --color-primary:    #1F2A44;
+    --color-secondary:  #E76F2E;
+    --color-accent:     #4DA3FF;
+    --color-bg:         #F5F7FA;
+    --color-card:       #FFFFFF;
+    --color-text:       #222222;
+    --color-text-light: #6B7280;
+    --font-display:     'Syne', sans-serif;
+    --font-body:        'DM Sans', sans-serif;
+    --radius-sm:        8px;
+    --radius-md:        12px;
+    --radius-lg:        18px;
+    --radius-full:      999px;
+    --shadow-sm:        0 4px 20px rgba(0,0,0,0.06);
+    --shadow-md:        0 10px 30px rgba(0,0,0,0.12);
+  }
+
+  body { background: var(--color-bg); font-family: var(--font-body); color: var(--color-text); }
+
+  /* ── Breadcrumb ── */
+  .pdp-breadcrumb {
+    display: flex; align-items: center; gap: 6px;
+    font-size: 13px; color: var(--color-text-light);
+    padding: 20px 28px 0;
+  }
+  .pdp-breadcrumb a { color: var(--color-text-light); text-decoration: none; cursor: pointer; }
+  .pdp-breadcrumb a:hover { color: var(--color-primary); }
+  .pdp-breadcrumb-sep { font-size: 10px; }
+
+  /* ── Layout ── */
+  .pdp-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+    padding: 24px 28px 40px;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  /* ── Gallery ── */
+  .pdp-gallery { display: flex; flex-direction: column; gap: 12px; }
+
+  .pdp-main-img {
+    border-radius: var(--radius-lg);
+    background: #fff;
+    border: 1px solid rgba(0,0,0,0.07);
+    aspect-ratio: 1;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 120px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: var(--shadow-sm);
+  }
+
+  .pdp-badge-main {
+    position: absolute; top: 16px; left: 16px;
+    background: var(--color-secondary);
+    color: #fff;
+    font-size: 11px; font-weight: 700;
+    padding: 5px 12px;
+    border-radius: var(--radius-full);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+
+  .pdp-thumbs {
+    display: flex; gap: 10px;
+  }
+  .pdp-thumb {
+    flex: 1;
+    aspect-ratio: 1;
+    border-radius: var(--radius-md);
+    background: #fff;
+    border: 2px solid transparent;
+    cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 28px;
+    transition: 0.15s ease;
+    box-shadow: var(--shadow-sm);
+  }
+  .pdp-thumb:hover { border-color: rgba(0,0,0,0.15); }
+  .pdp-thumb.active { border-color: var(--color-primary); }
+
+  /* ── Info Panel ── */
+  .pdp-info { display: flex; flex-direction: column; gap: 20px; padding-top: 4px; }
+
+  .pdp-brand {
+    font-size: 12px; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 0.1em;
+    color: var(--color-secondary);
+  }
+
+  .pdp-name {
+    font-family: var(--font-display);
+    font-size: clamp(22px, 3vw, 32px);
+    font-weight: 800;
+    line-height: 1.15;
+    color: var(--color-primary);
+  }
+
+  .pdp-rating {
+    display: flex; align-items: center; gap: 8px;
+    font-size: 13px; color: var(--color-text-light);
+  }
+  .pdp-stars { color: #F59E0B; font-size: 15px; letter-spacing: 1px; }
+
+  .pdp-price-row {
+    display: flex; align-items: baseline; gap: 10px;
+    border-top: 1px solid rgba(0,0,0,0.07);
+    border-bottom: 1px solid rgba(0,0,0,0.07);
+    padding: 16px 0;
+  }
+  .pdp-price {
+    font-family: var(--font-display);
+    font-size: 34px; font-weight: 800;
+    color: var(--color-primary);
+  }
+  .pdp-old-price {
+    font-size: 18px; color: var(--color-text-light);
+    text-decoration: line-through;
+  }
+  .pdp-save-badge {
+    background: #EEF8F0; color: #15803D;
+    font-size: 12px; font-weight: 700;
+    padding: 4px 10px; border-radius: var(--radius-full);
+  }
+
+  /* ── Color Selector ── */
+  .pdp-section-label {
+    font-size: 12px; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 0.08em;
+    color: var(--color-text-light);
+    margin-bottom: 10px;
+  }
+
+  .pdp-colors { display: flex; gap: 10px; flex-wrap: wrap; }
+
+  .pdp-color-btn {
+    display: flex; flex-direction: column; align-items: center; gap: 6px;
+    border: none; background: none; cursor: pointer; padding: 0;
+  }
+  .pdp-color-swatch {
+    width: 36px; height: 36px;
+    border-radius: 50%;
+    border: 3px solid transparent;
+    outline: 2px solid transparent;
+    transition: 0.15s ease;
+    position: relative;
+  }
+  .pdp-color-btn:disabled .pdp-color-swatch::after {
+    content: '';
+    position: absolute; inset: 0;
+    border-radius: 50%;
+    background: repeating-linear-gradient(
+      45deg, rgba(255,255,255,0.6) 0px, rgba(255,255,255,0.6) 2px,
+      transparent 2px, transparent 6px
+    );
+  }
+  .pdp-color-btn.selected .pdp-color-swatch {
+    border-color: #fff;
+    outline-color: var(--color-primary);
+    box-shadow: 0 0 0 2px var(--color-primary);
+  }
+  .pdp-color-name {
+    font-size: 11px; color: var(--color-text-light);
+    white-space: nowrap;
+  }
+  .pdp-out-of-stock { font-size: 11px; color: #EF4444; }
+
+  /* ── Stock indicator ── */
+  .pdp-stock {
+    display: flex; align-items: center; gap: 6px;
+    font-size: 13px;
+  }
+  .pdp-stock-dot {
+    width: 8px; height: 8px; border-radius: 50%;
+  }
+  .pdp-stock-dot.in  { background: #22C55E; }
+  .pdp-stock-dot.low { background: #F59E0B; }
+  .pdp-stock-dot.out { background: #EF4444; }
+
+  /* ── SKU ── */
+  .pdp-sku { font-size: 12px; color: var(--color-text-light); }
+  .pdp-sku span { color: var(--color-text); font-weight: 500; }
+
+  /* ── Qty + CTA ── */
+  .pdp-actions { display: flex; gap: 12px; align-items: center; }
+
+  .pdp-qty {
+    display: flex; align-items: center;
+    border: 1px solid rgba(0,0,0,0.12);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    background: #fff;
+  }
+  .pdp-qty-btn {
+    width: 38px; height: 48px;
+    border: none; background: transparent;
+    cursor: pointer;
+    font-size: 18px; color: var(--color-primary);
+    transition: 0.15s;
+  }
+  .pdp-qty-btn:hover { background: var(--color-bg); }
+  .pdp-qty-btn:disabled { color: var(--color-text-light); cursor: not-allowed; }
+  .pdp-qty-val {
+    width: 40px; text-align: center;
+    font-size: 15px; font-weight: 600;
+    color: var(--color-primary);
+  }
+
+  .pdp-add-btn {
+    flex: 1;
+    height: 48px;
+    background: var(--color-primary);
+    color: #fff;
+    border: none;
+    border-radius: var(--radius-md);
+    font-size: 14px; font-weight: 700;
+    cursor: pointer;
+    transition: 0.2s ease;
+    font-family: var(--font-body);
+    display: flex; align-items: center; justify-content: center; gap: 8px;
+  }
+  .pdp-add-btn:hover:not(:disabled) { background: #2e3d5f; transform: translateY(-1px); }
+  .pdp-add-btn:disabled { background: #CBD5E1; cursor: not-allowed; }
+  .pdp-add-btn.in-cart { background: #16A34A; }
+
+  .pdp-wish-btn {
+    width: 48px; height: 48px;
+    border: 1px solid rgba(0,0,0,0.12);
+    background: #fff;
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    font-size: 20px;
+    transition: 0.15s;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .pdp-wish-btn:hover { border-color: #EF4444; background: #FFF5F5; }
+  .pdp-wish-btn.wishlisted { border-color: #EF4444; background: #FFF5F5; }
+
+  /* ── Description ── */
+  .pdp-desc {
+    font-size: 14px; line-height: 1.75;
+    color: var(--color-text-light);
+  }
+
+  /* ── Feature pills ── */
+  .pdp-features {
+    display: flex; flex-wrap: wrap; gap: 8px;
+  }
+  .pdp-feature-pill {
+    display: flex; align-items: center; gap: 6px;
+    padding: 6px 14px;
+    border-radius: var(--radius-full);
+    background: #EEF2F8;
+    font-size: 12px; font-weight: 500;
+    color: var(--color-primary);
+  }
+
+  /* ── Toast ── */
+  .toast {
+    position: fixed;
+    left: 50%; bottom: 28px;
+    transform: translateX(-50%) translateY(10px);
+    background: var(--color-primary); color: #fff;
+    padding: 10px 18px;
+    border-radius: var(--radius-full);
+    font-size: 13px; font-weight: 600;
+    opacity: 0;
+    transition: 0.25s ease;
+    pointer-events: none;
+    z-index: 300;
+  }
+  .toast.toast-visible {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+
+  /* ── Responsive ── */
+  @media (max-width: 760px) {
+    .pdp-layout { grid-template-columns: 1fr; padding: 16px; gap: 20px; }
+    .pdp-main-img { font-size: 80px; }
+  }
